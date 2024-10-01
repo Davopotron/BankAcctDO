@@ -12,7 +12,7 @@ import { createSlice } from "@reduxjs/toolkit";
 /** @type {{balance: number, history: Transaction[]}} */
 const initialState = {
   balance: 0,
-  transactions: []
+  history: []
 };
 
 /* TODO
@@ -48,7 +48,7 @@ const transactionsSlice = createSlice({
     transfer: (state, { payload }) => {
       state.balance -= payload.amount;
       state.history.push({
-        type: "transfer",
+        type: `transfer/${payload.recipient}`,
         amount: payload.amount,
         balance: state.balance,
       });
